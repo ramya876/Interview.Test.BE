@@ -40,8 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CaluculateAverage.cs" />
     <Compile Include="Course.cs" />
     <Compile Include="Diploma.cs" />
+    <Compile Include="GetGrade.cs" />
     <Compile Include="GraduationTracker.cs" />
     <Compile Include="STANDING.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

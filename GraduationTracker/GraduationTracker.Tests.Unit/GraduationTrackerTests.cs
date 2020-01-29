@@ -11,8 +11,8 @@ namespace GraduationTracker.Tests.Unit
         [TestMethod]
         public void TestHasCredits()
         {
-            var tracker = new GraduationTracker();
-
+            var tracker = new GraduationTracker(new GetGrade(), new CaluculateAverage());
+            
             var diploma = new Diploma
             {
                 Id = 1,
@@ -70,19 +70,39 @@ namespace GraduationTracker.Tests.Unit
 
             //tracker.HasGraduated()
         };
-            
+
             var graduated = new List<Tuple<bool, STANDING>>();
 
-            foreach(var student in students)
+            foreach (var student in students)
             {
-                graduated.Add(tracker.HasGraduated(diploma, student));      
+                graduated.Add(tracker.HasGraduated(diploma, student));
             }
 
-            
-            Assert.IsFalse(graduated.Any());
+
+            Assert.IsTrue(graduated.Any());
 
         }
 
+        [TestMethod]
+        public void GetStudentsCheck()
+        {
+            var student = Repository.GetStudent(1);
+            Assert.AreEqual(student.Id, 1);
+        }
 
+        [TestMethod]
+        public void GetDiplomaCheck()
+        {
+            var deploma = Repository.GetDiploma(1);
+            var deplomatest = new Diploma
+            {
+                Id = 1,
+                Credits = 4,
+                Requirements = new int[] { 100, 102, 103, 104 }
+            };
+            Assert.AreEqual(deploma.Id, deplomatest.Id);
+        }
+
+     
     }
 }
